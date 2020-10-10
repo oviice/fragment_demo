@@ -17,7 +17,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
          manager = getSupportFragmentManager();
-        transaction = manager.beginTransaction();
 
 
         Button home=findViewById(R.id.home);
@@ -27,7 +26,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 HomeFragment homeFragment=new HomeFragment();
-                transaction.add(R.id.layout, homeFragment, "HomeFrag");
+                transaction = manager.beginTransaction();
+                transaction.add(R.id.layout, homeFragment, "HomeFrag").commit();
 
             }
         });
@@ -36,8 +36,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 SecondFragment secondFragment=new SecondFragment();
-                transaction.replace(R.id.layout,secondFragment,"SEcond");
-                transaction.addToBackStack(null);
+                transaction = manager.beginTransaction();
+                transaction.replace(R.id.layout,secondFragment,"SEcond").commit();
             }
         });
     }
